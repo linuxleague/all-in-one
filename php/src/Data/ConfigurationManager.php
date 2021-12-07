@@ -88,6 +88,29 @@ class ConfigurationManager
         return $lastBackupTime;
     }
 
+    public function GetBackupTimes() : array {
+        if (!file_exists(DataConst::GetBackupArchivesList())) {
+            return $array[] = '';
+        }
+        
+        $content = file_get_contents(DataConst::GetBackupArchivesList());
+        if ($content === "") {
+            return $array[] = '';
+        }
+
+        $backupLines = explode("\n", $content);
+        foreach($backupLines as $lines) {
+            $backupTimesTemp = explode(",", $lines);
+            $backupTimes[] = $backupTimesTemp[1];
+        }
+        
+        if (!is_array($backupTimes)) {
+            return $array[] = '';
+        }
+
+        return $backupTimes;
+    }
+
     public function wasStartButtonClicked() : bool {
         if (isset($this->GetConfig()['wasStartButtonClicked'])) {
             return true;
