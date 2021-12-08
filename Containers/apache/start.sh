@@ -23,6 +23,17 @@ while ! nc -z "$COLLABORA_HOST" 9980; do
     sleep 5
 done
 
+if [ -z "$APACHE_PORT" ]; then
+    export APACHE_PORT="443"
+fi
+
+if [ "$APACHE_PORT" != '443' ]; then
+    export PROTOCOL="http"
+    export NC_DOMAIN=""
+else
+    export PROTOCOL="https"
+fi
+
 # Add caddy path
 mkdir -p /mnt/data/caddy/
 

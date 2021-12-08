@@ -220,6 +220,8 @@ class DockerActionManager
                     $replacements[1] = $this->configurationManager->GetBackupMode();
                 } elseif ($out[1] === 'AIO_URL') {
                     $replacements[1] = $this->configurationManager->GetAIOURL();
+                } elseif ($out[1] === 'APACHE_PORT') {
+                    $replacements[1] = $this->configurationManager->GetApachePort();
                 } else {
                     $replacements[1] = $this->configurationManager->GetSecret($out[1]);
                 }
