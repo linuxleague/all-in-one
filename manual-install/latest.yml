@@ -252,7 +252,7 @@ services:
 
   nextcloud-aio-clamav:
     image: nextcloud/aio-clamav:latest
-    init: true
+    init: false
     expose:
       - "3310"
     environment:
